@@ -1,0 +1,7 @@
+python3
+flask
+flask_sqlalchemy
+python_pptx
+python_docx
+flask_wtf
+wtforms
