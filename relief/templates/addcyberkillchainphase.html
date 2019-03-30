@@ -1,0 +1,186 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        <!--CSRF token-->
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <!--<legend class="border-bottom">Add Cyber Kill Chain Phase</legend>-->
+
+            <h4 class="mt-5">Campaign: <span class="badge badge-secondary">{{ form.campaignName.data }}</span></h4>
+
+            <!-- List Existing KC Phases -->
+            <h4 class="mt-5">Existing Phases</h4>
+
+            <div class="form-group">
+                <table class="table table-dark table-responsive-xl">
+                    <thead>
+                        <tr class="">
+                            <th scope="col">ID</th>
+                            <th scope="col">Phase</th>
+                            <th scope="col">Business Impact</th>
+                            <th scope="col">Adversary</th>
+                            <th scope="col">Capability</th>
+                            <th scope="col">Infrastructure</th>
+                            <th scope="col">Victim</th>
+                            <th scope="col">Courses of Action</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for phaseName in phases %}
+                        <tr class="">
+                            <td>{{phaseName.id}}</td>
+                            <td>{{phaseName.phase}}</td>
+                            <td>{{phaseName.business_impact}}</td>
+                            <td>{{phaseName.adversary}}</td>
+                            <td>{{phaseName.capability}}</td>
+                            <td>{{phaseName.infrastructure}}</td>
+                            <td>{{phaseName.victim}}</td>
+                            <td>{{phaseName.courses_of_action}}</td>
+                            <td>
+                                <div class="pull-right action-buttons">
+                                    <form action="" method="POST">
+                                        {{ form.edit(class="btn btn-primary") }}
+                                        <submit name="editphase" value="editphase" />
+                                        <input type='hidden' name='editphase_row_id' value="{{phaseName.id}}">
+                                    </form>
+                                </div>
+                            </td>
+                            <td>
+                                <form action="" method="POST">
+                                    {{ form.delete(class="btn btn-danger") }}
+                                    <submit name="deletephase" value="deletephase" />
+                                    <input type='hidden' name='deletephase_row_id' value="{{phaseName.id}}">
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                </table>
+            </div>
+
+
+
+            <!-- Start KC Phase Fields -->
+            <h4 class="mt-5">Add New Phase</h4>
+
+            <div class="form-group">
+                {{ form.phase.label(class="form-control-label") }}
+
+                {% if form.phase.errors %}
+                {{ form.phase(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.phase.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.phase(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+
+            <div class="form-group">
+                {{ form.adversary.label(class="form-control-label") }}
+
+                {% if form.adversary.errors %}
+                {{ form.adversary(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.adversary.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.adversary(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.capability.label(class="form-control-label") }}
+
+                {% if form.capability.errors %}
+                {{ form.capability(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.capability.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.capability(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.infrastructure.label(class="form-control-label") }}
+
+                {% if form.infrastructure.errors %}
+                {{ form.infrastructure(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.infrastructure.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.infrastructure(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.victim.label(class="form-control-label") }}
+
+                {% if form.victim.errors %}
+                {{ form.victim(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.victim.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.victim(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.business_impact.label(class="form-control-label") }}
+
+                {% if form.business_impact.errors %}
+                {{ form.business_impact(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.business_impact.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.business_impact(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.courses_of_action.label(class="form-control-label") }}
+
+                {% if form.courses_of_action.errors %}
+                {{ form.courses_of_action(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.courses_of_action.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.courses_of_action(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+
+        </fieldset>
+        <div class="form-group">
+            {#{ form.submit(class="btn btn-outline-primary mr-5 mb-5") }#}
+            <form action="" method="POST">
+                {{ form.save(class="btn btn-danger") }}
+                <submit name="savephase" value="savephase" />
+                <input type='hidden' name='savephase_row_id' value="{{phase}}">
+            </form>
+        </div>
+    </form>
+</div>
+{% endblock content %}

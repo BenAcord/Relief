@@ -1,0 +1,138 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <!--CSRF token-->
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Update Settings</legend>
+
+            <legend class="border-bottom mb-4 text-light bg-dark">Slide Content</legend>
+            <div class="form-group">
+                {{ form.newTrafficLightDefault.label(class="form-control-label") }}
+
+                {% if form.newTrafficLightDefault.errors %}
+                {{ form.newTrafficLightDefault(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.newTrafficLightDefault.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.newTrafficLightDefault(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.newDataMarkingFooter.label(class="form-control-label") }}
+
+                {% if form.newDataMarkingFooter.errors %}
+                {{ form.newDataMarkingFooter(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.newDataMarkingFooter.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.newDataMarkingFooter(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.newFileNamePrefix.label(class="form-control-label") }}
+
+                {% if form.newFileNamePrefix.errors %}
+                {{ form.newFileNamePrefix(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.newFileNamePrefix.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.newFileNamePrefix(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <legend class="border-bottom mb-4 mt-4 text-light bg-dark">Presentation Properties</legend>
+            <div class="form-group">
+                {{ form.newPresentationAuthor.label(class="form-control-label") }}
+
+                {% if form.newPresentationAuthor.errors %}
+                {{ form.newPresentationAuthor(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.newPresentationAuthor.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.newPresentationAuthor(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.newPresentationCategory.label(class="form-control-label") }}
+
+                {% if form.newPresentationCategory.errors %}
+                {{ form.newPresentationCategory(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.newPresentationCategory.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.newPresentationCategory(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.newPresentationTitle.label(class="form-control-label") }}
+
+                {% if form.newPresentationTitle.errors %}
+                {{ form.newPresentationTitle(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.newPresentationTitle.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.newPresentationTitle(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.newPresentationSubject.label(class="form-control-label") }}
+
+                {% if form.newPresentationSubject.errors %}
+                {{ form.newPresentationSubject(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.newPresentationSubject.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.newPresentationSubject(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.newPresentationKeywords.label(class="form-control-label") }}
+
+                {% if form.newPresentationKeywords.errors %}
+                {{ form.newPresentationKeywords(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.newPresentationKeywords.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.newPresentationKeywords(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-primary mr-5 mb-5") }}
+            {{ form.reset(class="btn btn-outline-danger ml-5 mb-5") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

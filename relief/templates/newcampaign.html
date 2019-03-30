@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <!--CSRF token-->
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">New Campaign</legend>
+
+            <div class="form-group">
+                {{ form.campaignName.label(class="form-control-label") }}
+
+                {% if form.campaignName.errors %}
+                {{ form.campaignName(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.campaignName.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.campaignName(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.reportDate.label(class="form-control-label") }} (eg. mm/dd/yyyy)
+
+                {% if form.reportDate.errors %}
+                {{ form.reportDate(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.reportDate.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.reportDate(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+
+            <div class="form-group">
+                {{ form.summaryBusinessImpact.label(class="form-control-label") }} <p>Affects on the organization in terms of mission impact, financial impact, etc.  For example, revenue loss, expense increase, number of things, percentage or something).</p>
+
+                {% if form.summaryBusinessImpact.errors %}
+                {{ form.summaryBusinessImpact(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.summaryBusinessImpact.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.summaryBusinessImpact(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-primary mr-5 mb-5") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

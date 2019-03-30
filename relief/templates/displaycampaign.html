@@ -1,0 +1,243 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <!--CSRF token-->
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Campaign Details</legend>
+
+            <div class="form-group">
+                {{ form.campaignName.label(class="form-control-label") }}
+
+                {% if form.campaignName.errors %}
+                {{ form.campaignName(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.campaignName.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.campaignName(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.reportDate.label(class="form-control-label") }} (eg. mm/dd/yyyy)   <span class="text-danger">Currently cannot be updated.</span>
+
+                {% if form.reportDate.errors %}
+                {{ form.reportDate(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.reportDate.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.reportDate(class="form-control form-control-lg disabled") }}
+                {% endif %}
+            </div>
+
+
+            <div class="form-group">
+                {{ form.summaryBusinessImpact.label(class="form-control-label") }} (eg. negative: currency, number of
+                things, percentage or something)
+
+                {% if form.summaryBusinessImpact.errors %}
+                {{ form.summaryBusinessImpact(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.summaryBusinessImpact.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.summaryBusinessImpact(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div>
+                <label>If you are creating a new campaign or modifying an existing be sure to save prior to adding or
+                    modifying Cyber Kill Chain phases.
+                </label>
+            </div>
+            <div>
+                <div class="mr-5 action-buttons">
+                    <form action="" method="POST">
+                        <submit name="savecampaign" value="savecampaign" class="mr-5" />
+                        {{ form.savecampaign(class="btn btn-outline-primary") }}
+                        <input type='hidden' name='savecampaign_row_id' value="savecampaign">
+
+                        <submit name="deletecampaign" value="deletecampaign" class="ml-5" />
+                        {{ form.deletecampaign(class="btn btn-outline-danger") }}
+                        <input type='hidden' name='deletecampaign_row_id' value="deletecampaign">
+                    </form>
+                </div>
+            </div>
+
+            <h4 class="mb-3 mt-5">Cyber Kill Chain Phases</h4>
+            <!--loop display existing phases for the campaign-->
+            <div class="form-group">
+                <table class="table table-striped table-responsive-xl">
+                    <thead>
+                        <tr class="table-dark">
+                            <th scope="col">ID</th>
+                            <th scope="col">Phase</th>
+                            <th scope="col">Business Impact</th>
+                            <th scope="col">Adversary</th>
+                            <th scope="col">Capability</th>
+                            <th scope="col">Infrastructure</th>
+                            <th scope="col">Victim</th>
+                            <th scope="col">CoA</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for phase in phases %}
+                        <tr class="table table-striped">
+                            <td>{{phase.id}}</td>
+                            <td>{{phase.phase}}</td>
+                            <td>{{phase.business_impact}}</td>
+                            <td>{{phase.adversary}}</td>
+                            <td>{{phase.capability}}</td>
+                            <td>{{phase.infrastructure}}</td>
+                            <td>{{phase.victim}}</td>
+                            <td>{{phase.courses_of_action}}</td>
+                            <td>
+                                <div class="pull-right action-buttons">
+                                    <form action="" method="POST">
+                                        {{ form.editphase(class="btn btn-outline-primary") }}
+                                        <submit name="editphase" value="editphase" />
+                                        <input type='hidden' name='editphase_row_id' value="{{phase.id}}">
+                                    </form>
+                                </div>
+                            </td>
+                            <td>
+                                <form action="" method="POST">
+                                    {{ form.deletephase(class="btn btn-outline-danger") }}
+                                    <submit name="deletephase" value="deletephase" />
+                                    <input type='hidden' name='deletephase_row_id' value="{{phase.id}}">
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                </table>
+            </div>
+
+            <form action="" method="POST">
+                <h4 class="mb-3 mt-5">Add or Modify a Cyber Kill Chain Phase</h4>
+                <div class="form-group">
+                    {{ form.phase.label(class="form-control-label") }}
+
+                    {% if form.phase.errors %}
+                    {{ form.phase(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.phase.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.phase(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+
+                <div class="form-group">
+                    {{ form.adversary.label(class="form-control-label") }}
+
+                    {% if form.adversary.errors %}
+                    {{ form.adversary(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.adversary.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.adversary(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.capability.label(class="form-control-label") }}
+
+                    {% if form.capability.errors %}
+                    {{ form.capability(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.capability.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.capability(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.infrastructure.label(class="form-control-label") }}
+
+                    {% if form.infrastructure.errors %}
+                    {{ form.infrastructure(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.infrastructure.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.infrastructure(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.victim.label(class="form-control-label") }}
+
+                    {% if form.victim.errors %}
+                    {{ form.victim(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.victim.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.victim(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.business_impact.label(class="form-control-label") }}
+
+                    {% if form.business_impact.errors %}
+                    {{ form.business_impact(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.business_impact.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.business_impact(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.courses_of_action.label(class="form-control-label") }}
+
+                    {% if form.courses_of_action.errors %}
+                    {{ form.courses_of_action(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.courses_of_action.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.courses_of_action(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+        </fieldset>
+        <div class="mr-5 action-buttons">
+            <submit name="addphase" value="addphase" class="mb-5" />
+            {{ form.addphase(class="btn btn-outline-primary mr-5 mb-5") }}
+            <input type='hidden' name='addphase_row_id' value="addphase">
+        </div>
+    </form>
+    </form>
+</div>
+{% endblock content %}

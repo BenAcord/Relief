@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Relief - New Campaign</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" crossorigin="SameOrigin">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <style type="text/css">
+        .bgimgdiamond {
+            background-image: url("{{ url_for('static', filename='images/diamond.png') }}");
+            background-repeat: no-repeat;
+            background-size: contain;
+            display: block;
+            object-fit: contain;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            margin-left: auto;
+            margin-right: auto;
+            position: absolute;
+        }
+
+        .imgDiamond {
+            float: left;
+            width: 200px;
+            height: 200px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.slim.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}" type="text/javascript"></script>
+</head>
+
+<body>
+    <!-- Image and text -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
+        <a class="navbar-brand" href="/">
+            <img src="assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Relief
+        </a>
+        <span class="text-muted ml-auto">Tell the tale, paint the picture</span>
+    </nav>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/new">
+                                <span data-feather="new"></span>
+                                New Campaign<span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/campaigns">
+                                <span data-feather="campaigns"></span>
+                                List Campaigns
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/stats">
+                                <span data-feather="stats"></span>
+                                Stats
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/settings">
+                                <span data-feather="settings"></span>
+                                Settings
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Start the form -->
+            <form class="text-center" action="http://localhost:5000/processtest" method="POST">
+                <main role="main" class="px-4">
+                    <!-- old class options: col-md-9 ml-sm-auto col-lg-10  -->
+
+                    <div class="panel-body">
+
+                        <!-- Start the tabs to group phases -->
+                        <div class="bd-example bd-example-tabs" role="tabpanel">
+
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-campaign-tab" data-toggle="pill" href="#pills-campaign"
+                                        role="tab" aria-controls="campaign" aria-selected="false">Campaign</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-recon-tab" data-toggle="pill" href="#pills-recon"
+                                        role="tab" aria-controls="recon" aria-selected="false">Recon</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-weaponization-tab" data-toggle="pill" href="#pills-weaponization"
+                                        role="tab" aria-controls="weaponization" aria-selected="false">Weaponization</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-delivery-tab" data-toggle="pill" href="#pills-delivery"
+                                        role="tab" aria-controls="delivery" aria-selected="false">Delivery</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-exploitation-tab" data-toggle="pill" href="#pills-exploitation"
+                                        role="tab" aria-controls="exploitation" aria-selected="false">Exploitation</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-installation-tab" data-toggle="pill" href="#pills-installation"
+                                        role="tab" aria-controls="installation" aria-selected="false">Installation</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-commandandcontrol-tab" data-toggle="pill" href="#pills-commandandcontrol"
+                                        role="tab" aria-controls="commandandcontrol" aria-selected="false">Command &
+                                        Control</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-actionsonobjectives-tab" data-toggle="pill" href="#pills-actionsonobjectives"
+                                        role="tab" aria-controls="actionsonobjectives" aria-selected="false">Actions
+                                        On
+                                        Objectives</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-finalize-tab" data-toggle="pill" href="#pills-finalize"
+                                        role="tab" aria-controls="finalize" aria-selected="false">Finalize</a>
+                                </li>
+                            </ul>
+                        </div><!-- end tabpanel -->
+
+                        <!-- Define content of each tab -->
+                        <div class="tab-content" id="pills-tabContent">
+
+                            <!-- start campaign tab -->
+                            <div class="tab-pane active" id="pills-campaign" role="tabpanel" aria-labelledby="pills-campaign-tab">
+
+                                <div class="input-group input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing">Campaign
+                                            Name:</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="campaignNameNew" value="{{request.form.campaignname}}"
+                                        aria-label="campaignNameNew" aria-describedby="inputGroup-sizing">
+                                </div>
+                                <!--button type="button" class="btn btn-outline-dark">Random Name</button-->
+                                <div class="input-group input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing">Report
+                                            Date</span>
+                                    </div>
+                                    <input type="date" class="form-control" aria-label="reportDateFormControlInput1"
+                                        aria-describedby="inputGroup-sizing" placeholder="02/16/2019" name="reportDate"
+                                        value="{{request.form.reportdate}}">
+                                </div>
+                                <div class="input-group input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing">Summary of Business
+                                            Impact:</span>
+                                    </div>
+                                    <textarea maxlength=250 class="form-control" id="summaryBusinessImpact" rows="4"
+                                        name="summaryBusinessImpact" value="{{request.form.summarybusinessimpact}}"></textarea>
+                                </div>
+                            </div> <!-- end campaign tab -->
+
+                            <!-- start recon tab -->
+                            <div class="tab-pane fade show" id="pills-recon" role="tabpanel" aria-labelledby="pills-recon-tab">
+
+
+                                <div class="input-group input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing">Business Impact:</span>
+                                    </div>
+                                    <textarea class="form-control" id="reconBusinessImpact" rows="2" name="reconBusinessImpact"
+                                        value="{{request.form.reconBusinessImpact}}"></textarea>
+                                </div>
+
+
+                                <p></p>
+
+
+
+                                <div class="container-fluid">
+                                    <div class="container">
+                                        <div class="row">
+                                            <!--start first row-->
+                                            <div class="col-sm"></div>
+
+                                            <div class="col-sm bg-secondary">
+                                                <h1 class="h4 mb-1 text-white">Adversary</h1>
+                                                <div class="form-group mt-0">
+                                                    <textarea class="form-control" id="adversaryFormControlTextarea1"
+                                                        rows="4" maxlength=250 name="adversary" value="{{request.form.adversary}}"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm"></div>
+                                        </div> <!-- end first row-->
+
+                                        <div class="row">
+                                            <!-- second row -->
+                                            <div class="col-sm bg-secondary">
+                                                <h1 class="h4 mb-1 text-white">Infrastructure</h1>
+                                                <div class="form-group mt-0">
+                                                    <textarea class="form-control" id="infrastructureFormControlTextarea1"
+                                                        rows="4" maxlength=250 name="infrastructure" value="{{request.form.infrastructure}}"></textarea>
+                                                </div>
+                                            </div>
+
+
+
+                                            <!-- Image of a diamond -->
+                                            <div class="col-sm imgDiamond">
+                                                <img src="http://localhost:5000/static/images/diamond.png" class="imgDiamond">
+                                            </div>
+
+
+
+                                            <div class="col-sm bg-secondary">
+                                                <h1 class="h4 mb-1 text-white">Capability</h1>
+                                                <div class="form-group mt-0">
+                                                    <textarea class="form-control" id="capabilityFormControlTextarea1"
+                                                        rows="4" maxlength=250 name="capability" value="{{request.form.capability}}"></textarea>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end middle row -->
+
+
+                                        <div class="row">
+                                            <!-- start bottom row -->
+                                            <div class="col-sm"></div>
+
+                                            <div class="col-sm bg-secondary">
+                                                <h1 class="h4 mb-1 text-white">Victim</h1>
+                                                <div class="form-group mt-0">
+                                                    <textarea class="form-control" id="victimFormControlTextarea1" rows="4"
+                                                        maxlength=250 name="victim" value="{{request.form.victim}}"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm"></div>
+                                        </div> <!-- end bottom row-->
+                                    </div> <!-- end container -->
+                                </div>
+                                <!--end container fluid -->
+
+
+
+                                <p></p>
+
+
+
+                                <div class="input-group input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing">Courses of Action:</span>
+                                    </div>
+                                    <textarea class="form-control" id="reconCoursesOfAction" rows="2" name="reconCoursesOfAction"
+                                        value="{{request.form.reconCoursesOfAction}}"></textarea>
+                                    <select class="custom-select" multiple>
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                                <!--end COA-->
+
+
+
+
+
+                            </div><!-- end Recon tab -->
+
+                            <!-- start weaponization tab -->
+                            <div class="tab-pane fade show" id="pills-weaponization" role="tabpanel" aria-labelledby="pills-weaponization-tab">
+                                <p>TBD</p>
+                            </div><!-- end weaponization tab -->
+
+                            <!-- start delivery tab -->
+                            <div class="tab-pane fade show" id="pills-delivery" role="tabpanel" aria-labelledby="pills-delivery-tab">
+                                <p>TBD</p>
+                            </div><!-- end delivery tab -->
+
+                            <!-- start exploitation tab -->
+                            <div class="tab-pane fade show" id="pills-exploitation" role="tabpanel" aria-labelledby="pills-exploitation-tab">
+                                <p>TBD</p>
+                            </div><!-- end exploitation tab -->
+
+
+                            <!-- start installation tab -->
+                            <div class="tab-pane fade show" id="pills-installation" role="tabpanel" aria-labelledby="pills-installation-tab">
+                                <p>TBD</p>
+                            </div><!-- end installation tab -->
+
+
+                            <!-- start commandandcontrol tab -->
+                            <div class="tab-pane fade show" id="pills-commandandcontrol" role="tabpanel"
+                                aria-labelledby="pills-commandandcontrol-tab">
+                                <p>TBD</p>
+                            </div><!-- end commandandcontrol tab -->
+
+
+                            <!-- start actionsonobjectives tab -->
+                            <div class="tab-pane fade show" id="pills-actionsonobjectives" role="tabpanel"
+                                aria-labelledby="pills-actionsonobjectives-tab">
+                                <p>TBD</p>
+                            </div><!-- end actionsonobjectives tab -->
+
+
+                            <!-- start save tab -->
+                            <div class="tab-pane fade show" id="pills-finalize" role="tabpanel" aria-labelledby="pills-finalize-tab">
+                                <input type="submit" class="btn btn-success" name="newSave" action="POST" value="Save to Database"></input>
+                                <input type="submit" class="btn btn-success" name="newSave" action="POST" value="Export to Presentation"></input>
+                                <input type="submit" class="btn btn-danger" name="newReset" action="POST" value="Reset"></input>
+                            </div><!-- end save tab -->
+
+                        </div><!-- end tabcontent -->
+                    </div><!-- end panelbody -->
+
+
+
+                </main>
+            </form>
+        </div>
+    </div>
+
+
+    <!--<footer class="footer bg-dark">
+        <div class="container">
+            <span class="text-muted">Get the latest version of Relief at PUBLIC GIT REPO TBD.</span>
+        </div>
+    </footer>-->
+
+</body>
+
+</html>
