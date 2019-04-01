@@ -28,7 +28,7 @@ The primary purpose for collecting summary facts and effects of the event is so 
 
 Security Considerations
 =======================
-As previously mentioned Relief is a MVP, minimum viable product.  While the output is tagged for marking and handling the data and communication are not encrypted.  The SQLite database is cleartext.  Please use this information to secure your filesystem accordingly.
+As previously mentioned Relief is a MVP, minimum viable product.  While the output is tagged for marking and handling the data store and communication are not encrypted.  The SQLite database is cleartext.  Please use this information to secure your filesystem accordingly.
 
 
 Installation & Setup
@@ -39,7 +39,7 @@ See REQUIREMENTS.txt for the list of packages
 1. Create a directory
 2. Git clone the repo
 3. Create and activate a Python3 virtual environment based on your OS
-4. Install the dependencies: python3 -m pip install <list of items from REQUIREMENTS.txt>
+4. Install the dependencies listed of items from REQUIREMENTS.txt: python3 -m pip install ...
 5. Run Relief: python3 run.py
 6. Open a browser and navigate to: http://localhost:5000
 
