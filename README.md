@@ -1,5 +1,4 @@
-=============
-Relief v0.0.1
+Relief
 =============
 ----------------------------------
  Paint the picture, tell the tale.
